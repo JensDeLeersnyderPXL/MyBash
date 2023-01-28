@@ -14,6 +14,7 @@ unset GREP_OPTIONS
 alias ls='ls --color'
 alias vi='nvim'
 
+# Functions originally from ChrisTitus
 #######################################################
 # SPECIAL FUNCTIONS
 #######################################################
@@ -49,7 +50,7 @@ function whatsmyip ()
 	# /sbin/ifconfig |grep -B1 "inet addr" |awk '{ if ( $1 == "inet" ) { print $2 } else if ( $2 == "Link" ) { printf "%s:" ,$1 } }' |awk -F: '{ print $1 ": " $3 }';
 
 	# Internal IP Lookup
-	echo -n "Internal IP: " ; /sbin/ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'
+	echo -n "Internal IP: " ; ip -4 -o addr show wlan0 | awk '{print $4}'
 
 	# External IP Lookup
 	echo -n "External IP: " ; wget --timeout=30 http://ipinfo.io/ip -qO -
