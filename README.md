@@ -1,9 +1,10 @@
 # MyBash
+
 ![Screenshot](https://raw.githubusercontent.com/JensDeLeersnyderPXL/MyBash/main/Screenshots/Terminal_Screenshot.png)
+
 ## Installation
-```
-curl -sS https://starship.rs/install.sh | sh
-```
+- Run the script for your distro 
+
 ## Files
 - Copy starship.toml to your config folder
 - Copy .bashrc to your home folder
