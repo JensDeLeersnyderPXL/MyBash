@@ -41,41 +41,8 @@ extract () {
 	done
 }
 
-# Show the current version of the operating system
-ver ()
-{
-	local dtype
-	dtype=$(distribution)
-
-	if [ $dtype == "redhat" ]; then
-		if [ -s /etc/redhat-release ]; then
-			cat /etc/redhat-release && uname -a
-		else
-			cat /etc/issue && uname -a
-		fi
-	elif [ $dtype == "suse" ]; then
-		cat /etc/SuSE-release
-	elif [ $dtype == "debian" ]; then
-		lsb_release -a
-		# sudo cat /etc/issue && sudo cat /etc/issue.net && sudo cat /etc/lsb_release && sudo cat /etc/os-release # Linux Mint option 2
-	elif [ $dtype == "gentoo" ]; then
-		cat /etc/gentoo-release
-	elif [ $dtype == "mandriva" ]; then
-		cat /etc/mandriva-release
-	elif [ $dtype == "slackware" ]; then
-		cat /etc/slackware-version
-	else
-		if [ -s /etc/issue ]; then
-			cat /etc/issue
-		else
-			echo "Error: Unknown distribution"
-			exit 1
-		fi
-	fi
-}
-
 # IP address lookup
-alias whatismyip="whatsmyip"
+alias whatmyip="whatsmyip"
 function whatsmyip ()
 {
 	# Dumps a list of all IP addresses for every device
@@ -85,5 +52,5 @@ function whatsmyip ()
 	echo -n "Internal IP: " ; /sbin/ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'
 
 	# External IP Lookup
-	echo -n "External IP: " ; wget http://smart-ip.net/myip -O - -q
+	echo -n "External IP: " ; wget --timeout=30 http://ipinfo.io/ip -qO -
 }
