@@ -14,8 +14,8 @@ unset GREP_OPTIONS
 alias ls='ls --color'
 alias vi='nvim'
 
-alias gpra
-gpra='git pull --rebase; git submodule --quiet sync; git submodule update --init --recursive --jobs=8'
+alias gpra='git pull --rebase; git submodule --quiet sync; git submodule update --init --recursive --jobs=8'
+alias aursearch="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
 
 # Functions originally from ChrisTitus
 #######################################################
